@@ -99,6 +99,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- My Own Package -->
+		<dependency>
+			<groupId>com.github.ubisam-heung</groupId>
+			<artifactId>api-response</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
