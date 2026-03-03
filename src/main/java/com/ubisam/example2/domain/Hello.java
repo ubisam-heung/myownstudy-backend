@@ -1,8 +1,11 @@
-package com.ubisam.example2.helloes;
+package com.ubisam.example2.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Data;
 
 //ORM - Object Relation Mapping
@@ -18,6 +21,13 @@ public class Hello {
     // private Id id;
     private String name;
     private String email;
+
+    //keyword는 DB에 저장되지 않는 필드
+    @Transient
+    private String keyword;
+
+    @ManyToOne
+    private Hello hello;
 
     // @Data
     // @Embeddable

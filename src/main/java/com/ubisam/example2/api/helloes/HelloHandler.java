@@ -1,9 +1,15 @@
-package com.ubisam.example2.helloes;
+package com.ubisam.example2.api.helloes;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.rest.core.annotation.HandleAfterCreate;
 import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.stereotype.Component;
+
+import com.ubisam.example2.domain.Hello;
+
+import io.u2ware.common.data.jpa.repository.query.JpaSpecificationBuilder;
+import io.u2ware.common.data.rest.core.annotation.HandleBeforeRead;
 
 @Component
 @RepositoryEventHandler
@@ -27,5 +33,14 @@ public class HelloHandler {
     public void afterCreate(Hello hello){
         //Auditing(추적)
         System.out.println("[afterCreate] testtesttesttesttesttesttesttest");
+    }
+
+    @HandleBeforeRead
+    public void beforeSearch(Hello hello, Specification<Hello> spec){
+        System.out.println("[beforeSearch] testtesttesttesttesttesttesttest");
+
+        JpaSpecificationBuilder<Hello> query = JpaSpecificationBuilder.of(Hello.class);
+        query.where()
+            .and().eq("name", hello.getKeyword()).build(spec);
     }
 }

@@ -1,4 +1,4 @@
-package com.ubisam.example2.Worlds;
+package com.ubisam.example2.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

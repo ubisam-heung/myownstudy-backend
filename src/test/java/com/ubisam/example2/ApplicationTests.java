@@ -6,9 +6,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.ubisam.example2.helloes.Hello;
-import com.ubisam.example2.helloes.HelloRepository;
+import com.ubisam.example2.api.helloes.HelloRepository;
+import com.ubisam.example2.domain.Hello;
 
+import io.u2ware.common.data.jpa.repository.query.JpaSpecificationBuilder;
 import static io.u2ware.common.docs.MockMvcRestDocs.get;
 import static io.u2ware.common.docs.MockMvcRestDocs.is2xx;
 import static io.u2ware.common.docs.MockMvcRestDocs.post;
@@ -17,7 +18,7 @@ import static io.u2ware.common.docs.MockMvcRestDocs.print;
 
 @SpringBootTest
 @AutoConfigureMockMvc //웹 테스트
-class Example2ApplicationTests {
+class ApplicationTests {
 
 	@Autowired
 	private HelloRepository helloRepository;
@@ -64,4 +65,33 @@ class Example2ApplicationTests {
 		//Read
 		// mockMvc.perform(get("/helloes")).andDo(print()).andExpect(is2xx());
 	}
+
+	@Test
+	void contextLoad3() throws Exception {
+		JpaSpecificationBuilder<Hello> query = JpaSpecificationBuilder
+			.of(Hello.class);
+		query.where()
+			.and().eq("name", "홍길동")
+			.or().like("email", "abc@abc.com");
+		//select * from hello where name = '홍길동' or email like 'abc@abc.com'
+		//==============================================
+		//select * from hello where 
+		// (name = '홍길동' and email like 'abc@abc.com') 
+		// or (email like 'abc2@abc.com')
+		// query.where()
+		// 	.andStart().and().eq("name", "홍길동")
+		// 	.and().like("email", "abc@abc.com").andEnd()
+		// 	.or().like("email", "abc2@abc.com");
+
+		helloRepository.findAll(query.build());
+
+        Hello h = new Hello();
+        h.setKeyword("g");
+
+        mockMvc.perform(post("/helloes/search")
+            .content(h))
+            .andDo(print())
+            .andExpect(is2xx());
+	}
+	
 }

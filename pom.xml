@@ -49,12 +49,21 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-jdbc</artifactId>		   
 		</dependency>
+		<dependency>
+		    <groupId>com.querydsl</groupId>
+		    <artifactId>querydsl-jpa</artifactId>
+		</dependency>
 
 		<!--Rest-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
+		<dependency>
+            <groupId>io.u2ware.common</groupId>
+            <artifactId>u2ware-common-data</artifactId>
+            <version>3.5.11</version>
+        </dependency>
 
 		<!--Lombok-->
 		<dependency>
@@ -97,25 +106,16 @@
 
 		<!-- io.u2ware-->
 		<dependency>
-            <groupId>io.u2ware.common</groupId>
-            <artifactId>u2ware-common-data</artifactId>
-            <version>3.4.13</version>
-        </dependency>
+			<groupId>io.u2ware.common</groupId>
+			<artifactId>u2ware-common-oauth2</artifactId>
+			<version>3.5.11</version>
+		</dependency>
         <dependency>
-            <groupId>io.u2ware.common</groupId>
-            <artifactId>u2ware-common-oauth2</artifactId>
-            <version>3.4.13</version>
-        </dependency>
-        <dependency>
-            <groupId>io.u2ware.common</groupId>
-            <artifactId>u2ware-common-stomp</artifactId>
-            <version>3.4.13</version>
-        </dependency>
-        <dependency>
-            <groupId>io.u2ware.common</groupId>
-            <artifactId>u2ware-common-docs</artifactId>
-            <version>3.4.13</version>
-        </dependency>
+			<groupId>io.u2ware.common</groupId>
+			<artifactId>u2ware-common-stomp</artifactId>
+			<version>3.5.11</version>
+		</dependency>
+
 		
 		<!-- Test -->
 		<dependency>
@@ -128,13 +128,13 @@
 			<artifactId>spring-restdocs-mockmvc</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- My Own Package -->
-		<dependency>
-			<groupId>com.github.ubisam-heung</groupId>
-			<artifactId>api-response</artifactId>
-			<version>1.0.4</version>
-		</dependency>
+        <dependency>
+            <groupId>io.u2ware.common</groupId>
+            <artifactId>u2ware-common-docs</artifactId>
+            <version>3.5.11</version>
+			<scope>test</scope>
+        </dependency>
+		
 	</dependencies>
 
 	<build>
