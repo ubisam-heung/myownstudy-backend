@@ -1,29 +1,38 @@
 # Ubisam-Semina
 
 ## 개요
-이 프로젝트는 Spring Boot 기반의 예제 프로젝트로, REST API와 JPA를 활용한 데이터 관리 기능을 포함하고 있습니다.
+Spring Boot 기반의 REST API 예제 프로젝트입니다. JPA를 활용한 데이터 관리와 계층화된 구조로 유지보수성과 확장성을 고려했습니다.
 
 ## 폴더 구조
-- `src/main/java/com/ubisam/example2/helloes/` : Hello 관련 엔티티, 핸들러, 리포지토리
-- `src/main/java/com/ubisam/example2/Worlds/` : World 관련 엔티티, 리포지토리
-- `src/main/resources/` : 애플리케이션 설정 파일
-- `src/test/java/com/ubisam/example2/` : 테스트 코드
 
-## 주요 기능
-- Hello 및 World 엔티티 관리
-- REST API를 통한 CRUD
-- JPA를 이용한 데이터베이스 연동
-- MockMvc를 활용한 웹 테스트
+```
+myownstudy/
+├── mvnw, mvnw.cmd, pom.xml         # 프로젝트 설정
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/ubisam/example2/
+│   │   │        ├── Application.java            # Spring Boot 메인 클래스
+│   │   │        ├── ApplicationApiConfig.java   # API 설정 클래스
+│   │   │        ├── api/                        # REST API 컨트롤러 계층
+│   │   │        └── domain/                     # 도메인(엔티티,리포지토리, 서비스)
+│   │   └── resources/
+│   │        └── application.properties          # 환경 및 DB 설정
+│   └── test/
+│        ├── java/
+│        │   └── com/ubisam/example2/
+│        │        └── ApplicationTests.java      # 테스트 코드
+│        └── resources/
+│             └── application.properties         # 테스트 환경 설정
+└── target/
+```
 
 ## 실행 방법
-1. `mvnw` 또는 `mvnw.cmd`로 빌드 및 실행
-2. `application.properties`에서 DB 설정 확인
-3. API 테스트는 테스트 코드(`Example2ApplicationTests.java`) 참고
+1. `mvnw` 또는 `./mvnw spring-boot:run`로 실행
+2. `src/main/resources/application.properties`에서 DB 등 환경 설정 확인
+3. 테스트는 `ApplicationTests.java` 참고
 
 ## 개발 환경
 - Java 17 이상
 - Spring Boot
 - Maven
-
-## 문의
-궁금한 점이나 개선 사항은 이슈 또는 PR로 남겨주세요.
