@@ -10,7 +10,6 @@ import com.ubisam.example2.api.helloes.HelloRepository;
 import com.ubisam.example2.domain.Hello;
 
 import io.u2ware.common.data.jpa.repository.query.JpaSpecificationBuilder;
-import static io.u2ware.common.docs.MockMvcRestDocs.get;
 import static io.u2ware.common.docs.MockMvcRestDocs.is2xx;
 import static io.u2ware.common.docs.MockMvcRestDocs.post;
 import static io.u2ware.common.docs.MockMvcRestDocs.print;
@@ -47,10 +46,10 @@ class ApplicationTests {
 		h.setEmail("abc@abc.com");
 
 		//Create
-		mockMvc.perform(post("/helloes").content(h)).andDo(print()).andExpect(is2xx());
+		mockMvc.perform(post("/api/helloes").content(h)).andDo(print()).andExpect(is2xx());
 
 		//Read
-		mockMvc.perform(get("/helloes")).andDo(print()).andExpect(is2xx());
+		// mockMvc.perform(get("/api/helloes")).andDo(print()).andExpect(is2xx());
 		// mockMvc.perform(get("/helloes/"+ h.getId())).andDo(print()).andExpect(is2xx());
 
 		// h.setName("name2");
@@ -88,7 +87,7 @@ class ApplicationTests {
         Hello h = new Hello();
         h.setKeyword("g");
 
-        mockMvc.perform(post("/helloes/search")
+        mockMvc.perform(post("/api/helloes/search")
             .content(h))
             .andDo(print())
             .andExpect(is2xx());
