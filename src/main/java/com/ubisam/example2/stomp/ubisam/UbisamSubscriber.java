@@ -1,6 +1,5 @@
 package com.ubisam.example2.stomp.ubisam;
 
-import org.aspectj.apache.bcel.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +36,7 @@ public class UbisamSubscriber implements WebsocketStompClientHandler{
         h.setName(message.toString());
         helloRepository.save(h);
 
-        client.send("app/robot", data);
+        client.send("/app/robot", data);
     }
     
     @Override
