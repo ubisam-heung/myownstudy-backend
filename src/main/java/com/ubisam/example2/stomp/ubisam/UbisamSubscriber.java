@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.ubisam.example2.api.helloes.HelloRepository;
-import com.ubisam.example2.domain.Hello;
+import com.ubisam.example1.api.helloes.HelloRepository;
+import com.ubisam.example1.domain.Hello;
 
 import io.u2ware.common.stomp.client.WebsocketStompClient;
 import io.u2ware.common.stomp.client.WebsocketStompClientHandler;
@@ -33,12 +33,13 @@ public class UbisamSubscriber implements WebsocketStompClientHandler{
         data.put("message", "hello");
 
         Hello h = new Hello();
-        h.setName(message.toString());
+        h.setEmail(message.has("principal") ? message.get("principal").asText() : null);
+        h.setName(message.has("payload") ? message.get("payload").asText() : null);
         helloRepository.save(h);
 
         client.send("/app/robot", data);
     }
-    
+
     @Override
     public String getDestination() {
         return properties.getSubscriptions().get("ubisam");
